@@ -19,6 +19,49 @@
 
 #define DEBUG(file, line, func, msg) fprintf(stderr, "DEBUG - %s_%d_%s: %s", file, line, func, msg);
 
+double coord_2d_area_triangle(const coord_2d_t *a, const coord_2d_t *b, const coord_2d_t *c){
+  double area;
+  double base;
+  double height;
+  double min_x = a->x;
+  double min_y = a->y;
+  double max_x = a->x;
+  double max_y = a->y;
+
+  if(b->x < min_x){
+    min_x = b->x;
+  }
+  if(b->y < min_y){
+    min_y = b->y;
+  }
+  if(b->x > max_x){
+    max_x = b->x;
+  }
+  if(b->y > max_y){
+    max_y = b->y;
+  }
+
+  if(c->x < min_x){
+    min_x = c->x;
+  }
+  if(c->y < min_y){
+    min_y = c->y;
+  }
+  if(c->x > max_x){
+    max_x = c->x;
+  }
+  if(c->y > max_y){
+    max_y = c->y;
+  }
+
+  //calculate area as (1/2) * base * height
+  base = max_x - min_x;
+  height = max_y - min_y;
+  area = 0.5 * base * height;
+
+  return area;
+}
+
 double coord_2d_dist(const coord_2d_t* a, const coord_2d_t* b){
 
     /* Input Checks */
